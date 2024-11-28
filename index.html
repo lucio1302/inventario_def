@@ -26,8 +26,12 @@
         </div>
         <div id="azioni">
             <h2>Vuoi aggiungere, rimuovere o cercare un articolo?</h2>
-            <input type="text" id="azione" placeholder="Azione (aggiungere, rimuovere, cercare)">
-            <button onclick="eseguiAzione()">Esegui</button>
+            <select id="azione" onchange="eseguiAzione()">
+                <option value="">Seleziona un'azione</option>
+                <option value="aggiungere">Aggiungere</option>
+                <option value="rimuovere">Rimuovere</option>
+                <option value="cercare">Cercare</option>
+            </select>
         </div>
         <form id="form-articoli" style="display: none;" onsubmit="aggiungiArticolo(); return false;">
             <h2>Inserisci i dettagli del prodotto:</h2>

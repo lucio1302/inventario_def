@@ -1,7 +1,19 @@
-let inventario = JSON.parse(localStorage.getItem('inventario')) || [];
+let inventario = [];
 
-function salvaInventario() {
-    localStorage.setItem('inventario', JSON.stringify(inventario));
+async function caricaInventario() {
+    const response = await fetch('/inventario.json');
+    inventario = await response.json();
+    aggiornaTabella();
+}
+
+async function salvaInventario() {
+    await fetch('/salva', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inventario)
+    });
 }
 
 function eseguiAzione() {
@@ -83,4 +95,4 @@ function cercaArticolo() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', aggiornaTabella);
+document.addEventListener('DOMContentLoaded', caricaInventario);
